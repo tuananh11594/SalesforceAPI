@@ -11,10 +11,15 @@ import Alamofire
 
 class ViewController: UIViewController {
     
+    var resultRequest = [String: Any]()
+    
+    var accessToken = ""
+
+    @IBOutlet weak var showRequest: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.performPOSTLogin()
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,7 +28,7 @@ class ViewController: UIViewController {
          
     }
     
-    func performPOSTLogin() -> Void {
+    func connectAPISalesforce() -> Void {
         var parameters = [String:String]()
         parameters["grant_type"] = "password"
         parameters["client_id"] = "3MVG9d8..z.hDcPKzynfxKS2SDf8B5mXB9_xg3zVZqr6GH0IU2XEoOZAtJGmxhNyRePlVyGg9QMSEVSt1QOTa"
@@ -45,13 +50,61 @@ class ViewController: UIViewController {
             print("Response data is :",response.data!)
             
             // result of response serialization : SUCCESS / FAILURE
-            print("Response result is :",response.result)
+            print("Response result is :",response.result.value!)
             
             debugPrint("Debug Print :", response)
+            
+            do {
+                let json = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any]
+                self.resultRequest = json as! [String : Any]
+            } catch {
+                print(error)
+            }
+            
+            if let access_token =  self.resultRequest["access_token"] {
+                self.accessToken = access_token as! String
+            }
+            
         }
     }
     
+    @IBAction func btnConnectAPISalesforce(_ sender: UIButton) {
+        self.connectAPISalesforce()
+    }
+    
+    @IBAction func btnCallAPI(_ sender: UIButton) {
 
+        let headers: HTTPHeaders = ["Authorization" :"Bearer \(self.accessToken)"]
+        
+        Alamofire.request("https://tuananh-dev-ed.my.salesforce.com/services/data/v40.0/sobjects/Account", method: .get, encoding: URLEncoding.default, headers: headers).responseJSON { response in
+            
+            // original URL request
+            print("Request is :",response.request!)
+            
+            // HTTP URL response --> header and status code
+            print("Response received is :",response.response!)
+            
+            // server data : example 267 bytes
+            print("Response data is :",response.data!)
+            
+            // result of response serialization : SUCCESS / FAILURE
+            print("Response result is :",response.result.value!)
+            
+            debugPrint("Debug Print :", response)
+            
+            do {
+                let json = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any]
+               print(json)
+            } catch {
+                print(error)
+            }
+            
 
+            
+        }
+
+    }
+    
+    
 }
 

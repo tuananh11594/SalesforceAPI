@@ -28,9 +28,33 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgF-lH-gZT">
+                                <rect key="frame" x="106" y="557" width="162" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Connect API Salseforce"/>
+                                <connections>
+                                    <action selector="btnConnectAPISalesforce:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ta0-9l-UJz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Bg-TK-gNX">
+                                <rect key="frame" x="161" y="517" width="53" height="30"/>
+                                <state key="normal" title="Call API"/>
+                                <connections>
+                                    <action selector="btnCallAPI:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7KJ-wi-QTJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hgF-lH-gZT" secondAttribute="bottom" constant="80" id="B04-4Z-B3M"/>
+                            <constraint firstItem="hgF-lH-gZT" firstAttribute="top" secondItem="1Bg-TK-gNX" secondAttribute="bottom" constant="10" id="Qlo-Lk-TCV"/>
+                            <constraint firstItem="1Bg-TK-gNX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cu9-FW-hje"/>
+                            <constraint firstItem="hgF-lH-gZT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="szX-KE-9Wu"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="showRequest" destination="hRq-4W-ZsS" id="OfC-d5-Ahl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
