@@ -9,17 +9,24 @@
 import UIKit
 import Alamofire
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var resultRequest = [String: Any]()
     
     var accessToken = ""
+    
+    var listAccounts = [String]()
 
     @IBOutlet weak var showRequest: UILabel!
+    @IBOutlet weak var nameAccountTableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.nameAccountTableView.delegate = self
+        self.nameAccountTableView.dataSource = self
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,19 +99,140 @@ class ViewController: UIViewController {
             
             debugPrint("Debug Print :", response)
             
+            var json: [String: Any]!
+            
             do {
-                let json = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any]
-               print(json)
+                json = try JSONSerialization.jsonObject(with: response.data!, options: []) as! [String : Any]
+                print(json)
+                
+                if let items = json["recentItems"] as? [[String: Any]] {
+                    for item in items {
+                        if let name = item["Name"] as? String {
+                            self.listAccounts.append(name)
+                        }
+                    }
+                    self.nameAccountTableView.reloadData()
+                }
             } catch {
                 print(error)
             }
+        }
+    }
+    
+    @IBAction func btnCreateAcount(_ sender: UIButton) {
+        var parameters = [String:String]()
+        parameters["Name"] = "alibaba"
+        parameters["ShippingCity"] = "Ha Noi"
+        
+        let headers: HTTPHeaders = ["Authorization":"Bearer \(self.accessToken)","Accept":"application/json","Content-Type" :"application/json"]
+        
+        Alamofire.request("https://tuananh-dev-ed.my.salesforce.com/services/data/v40.0/sobjects/Account", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             
-
+            // original URL request
+            print("Request is :",response.request!)
             
+            // HTTP URL response --> header and status code
+            print("Response received is :",response.response!)
+            
+            // server data : example 267 bytes
+            print("Response data is :",response.data!)
+            
+            // result of response serialization : SUCCESS / FAILURE
+            print("Response result is :",response.result.value!)
+            
+            
+            
+            debugPrint("Debug Print :", response)
+            
+            do {
+                let json = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any]
+                print(json)
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    @IBAction func btnDeleteAccount(_ sender: UIButton) {
+        
+        let headers: HTTPHeaders = ["Authorization":"Bearer \(self.accessToken)","Accept":"application/json","Content-Type" :"application/json"]
+        
+        Alamofire.request("https://tuananh-dev-ed.my.salesforce.com/services/data/v40.0/sobjects/Account/0017F00000DHq5PQAT", method: .delete, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+            
+            // original URL request
+            print("Request is :",response.request!)
+            
+            // HTTP URL response --> header and status code
+            print("Response received is :",response.response!)
+            
+            // server data : example 267 bytes
+            print("Response data is :",response.data!)
+            
+            // result of response serialization : SUCCESS / FAILURE
+            print("Response result is :",response.result.value!)
+            
+            
+            
+            debugPrint("Debug Print :", response)
+            
+            do {
+                let json = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any]
+                print(json)
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    @IBAction func btnUpdateAccount(_ sender: Any) {
+        
+        var parameters = [String:String]()
+        parameters["ShippingCity"] = "Ha Noi"
+        
+        let headers: HTTPHeaders = ["Authorization":"Bearer \(self.accessToken)","Accept":"application/json","Content-Type" :"application/json"]
+        
+        Alamofire.request("https://tuananh-dev-ed.my.salesforce.com/services/data/v40.0/sobjects/Account/0017F00000DK4ppQAD", method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+            
+            // original URL request
+            print("Request is :",response.request!)
+            
+            // HTTP URL response --> header and status code
+            print("Response received is :",response.response!)
+            
+            // server data : example 267 bytes
+            print("Response data is :",response.data!)
+            
+            // result of response serialization : SUCCESS / FAILURE
+            print("Response result is :",response.result.value!)
+            
+            
+            
+            debugPrint("Debug Print :", response)
+            
+            do {
+                let json = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any]
+                print(json)
+            } catch {
+                print(error)
+            }
         }
 
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.listAccounts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let nameAccounts = listAccounts[indexPath.row]
+        cell.textLabel?.text = nameAccounts
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
 }
 

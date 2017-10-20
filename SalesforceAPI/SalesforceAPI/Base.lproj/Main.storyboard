@@ -21,15 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alo baba" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRq-4W-ZsS">
-                                <rect key="frame" x="166" y="282" width="92" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgF-lH-gZT">
-                                <rect key="frame" x="106" y="557" width="162" height="30"/>
+                                <rect key="frame" x="106" y="577" width="162" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Connect API Salseforce"/>
                                 <connections>
@@ -37,23 +30,78 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Bg-TK-gNX">
-                                <rect key="frame" x="161" y="517" width="53" height="30"/>
-                                <state key="normal" title="Call API"/>
+                                <rect key="frame" x="68" y="430" width="39" height="30"/>
+                                <state key="normal" title="Read "/>
                                 <connections>
                                     <action selector="btnCallAPI:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7KJ-wi-QTJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="au5-ib-gdh">
+                                <rect key="frame" x="30" y="478" width="119" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="UpZ-0S-uIB"/>
+                                </constraints>
+                                <state key="normal" title="Create a Account"/>
+                                <connections>
+                                    <action selector="btnCreateAcount:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jAX-8i-evY"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vAx-xZ-kd4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="lQY-2s-5jw"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="rbw-Yg-IdR">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rbw-Yg-IdR" id="c0l-Q0-XSH">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ne3-II-qbs">
+                                <rect key="frame" x="199" y="478" width="123" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ucf-it-Z1A"/>
+                                </constraints>
+                                <state key="normal" title="Update a Account"/>
+                                <connections>
+                                    <action selector="btnUpdateAccount:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oAa-Pr-SaA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFi-7r-08I">
+                                <rect key="frame" x="197" y="430" width="117" height="30"/>
+                                <state key="normal" title="Delete a Account"/>
+                                <connections>
+                                    <action selector="btnCallAPI:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6JC-RB-gB0"/>
+                                    <action selector="btnDeleteAccount:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dWY-h4-yOB"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hgF-lH-gZT" secondAttribute="bottom" constant="80" id="B04-4Z-B3M"/>
-                            <constraint firstItem="hgF-lH-gZT" firstAttribute="top" secondItem="1Bg-TK-gNX" secondAttribute="bottom" constant="10" id="Qlo-Lk-TCV"/>
-                            <constraint firstItem="1Bg-TK-gNX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cu9-FW-hje"/>
-                            <constraint firstItem="hgF-lH-gZT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="szX-KE-9Wu"/>
+                            <constraint firstItem="hgF-lH-gZT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7aJ-Hg-wbG"/>
+                            <constraint firstItem="vAx-xZ-kd4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="7f7-i7-brb"/>
+                            <constraint firstItem="Ne3-II-qbs" firstAttribute="leading" secondItem="au5-ib-gdh" secondAttribute="trailing" constant="50" id="AD5-Gq-jLJ"/>
+                            <constraint firstItem="aFi-7r-08I" firstAttribute="leading" secondItem="1Bg-TK-gNX" secondAttribute="trailing" constant="90" id="L9D-IO-ERt"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hgF-lH-gZT" secondAttribute="bottom" constant="60" id="MEV-r9-MT1"/>
+                            <constraint firstItem="vAx-xZ-kd4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Xvg-6R-UFz"/>
+                            <constraint firstItem="au5-ib-gdh" firstAttribute="top" secondItem="1Bg-TK-gNX" secondAttribute="bottom" constant="18" id="adl-B2-HKF"/>
+                            <constraint firstItem="au5-ib-gdh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="hAG-hB-MZG"/>
+                            <constraint firstAttribute="trailing" secondItem="vAx-xZ-kd4" secondAttribute="trailing" id="haa-CZ-uD7"/>
+                            <constraint firstItem="hgF-lH-gZT" firstAttribute="top" secondItem="Ne3-II-qbs" secondAttribute="bottom" constant="69" id="mhS-Kf-LEp"/>
+                            <constraint firstItem="Ne3-II-qbs" firstAttribute="top" secondItem="aFi-7r-08I" secondAttribute="bottom" constant="18" id="nE0-xi-Img"/>
+                            <constraint firstItem="1Bg-TK-gNX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="68" id="pCp-dG-6a8"/>
+                            <constraint firstItem="hgF-lH-gZT" firstAttribute="top" secondItem="au5-ib-gdh" secondAttribute="bottom" constant="69" id="vVH-mZ-8Qn"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="showRequest" destination="hRq-4W-ZsS" id="OfC-d5-Ahl"/>
+                        <outlet property="nameAccountTableView" destination="vAx-xZ-kd4" id="yzG-zl-lrv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
