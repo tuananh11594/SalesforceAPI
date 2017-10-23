@@ -41,7 +41,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         parameters["client_id"] = "3MVG9d8..z.hDcPKzynfxKS2SDf8B5mXB9_xg3zVZqr6GH0IU2XEoOZAtJGmxhNyRePlVyGg9QMSEVSt1QOTa"
         parameters["client_secret"] = "8884643420454483631"
         parameters["username"] = "anh.nguyen2@niteco.com"
-        parameters["password"] = "Tolachanh85144V6sqRV1d6eCs20ntpZ3ft7fj"
+        parameters["password"] = "Tolachanh85140ob2wBXlZpkXsAgg3AsYz7gvU"
         
         let headers: HTTPHeaders = ["Content-Type" :"application/x-www-form-urlencoded"]
         
@@ -147,6 +147,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             do {
                 let json = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any]
                 print(json)
+                self.nameAccountTableView.reloadData()
             } catch {
                 print(error)
             }
@@ -157,7 +158,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let headers: HTTPHeaders = ["Authorization":"Bearer \(self.accessToken)","Accept":"application/json","Content-Type" :"application/json"]
         
-        Alamofire.request("https://tuananh-dev-ed.my.salesforce.com/services/data/v40.0/sobjects/Account/0017F00000DHq5PQAT", method: .delete, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+        Alamofire.request("https://tuananh-dev-ed.my.salesforce.com/services/data/v40.0/sobjects/Account/0017F00000DK4ppQAD", method: .delete, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             
             // original URL request
             print("Request is :",response.request!)
@@ -178,6 +179,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             do {
                 let json = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any]
                 print(json)
+                self.nameAccountTableView.reloadData()
             } catch {
                 print(error)
             }
@@ -191,7 +193,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let headers: HTTPHeaders = ["Authorization":"Bearer \(self.accessToken)","Accept":"application/json","Content-Type" :"application/json"]
         
-        Alamofire.request("https://tuananh-dev-ed.my.salesforce.com/services/data/v40.0/sobjects/Account/0017F00000DK4ppQAD", method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+        Alamofire.request("https://tuananh-dev-ed.my.salesforce.com/services/data/v40.0/sobjects/Account/0017F00000DK5VeQAL", method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             
             // original URL request
             print("Request is :",response.request!)
@@ -212,6 +214,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             do {
                 let json = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any]
                 print(json)
+                self.nameAccountTableView.reloadData()
             } catch {
                 print(error)
             }
